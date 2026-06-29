@@ -14,9 +14,10 @@ export function Home () {
         </div>
         
       </div >
-      <div className='flex justify-center '>
-        <img src={hyd2}
-        className='rounded-4xl m-5 h-screen'/>
-      </div></div>
+        <div className='flex justify-center '>
+          <img src={hyd2}
+          className='rounded-4xl m-5  shadow-lg' />
+        </div>
+      </div>
     )
 }
