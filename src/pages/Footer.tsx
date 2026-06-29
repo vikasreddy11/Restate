@@ -1,4 +1,10 @@
-export function Footer() {
+type View = 'home' | 'services' | 'faq' | 'contact'
+
+type FooterProps = {
+  onNavigate?: (view: View) => void
+}
+
+export function Footer({ onNavigate }: FooterProps = {}) {
   return (
     <footer className="bg-neutral-100 border-t border-neutral-200/50 pt-16 pb-8 mt-auto w-full">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-sm">
@@ -100,17 +106,21 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-2.5">
-          <h3 className="font-bold text-neutral-800 text-base mb-1">Rightmove</h3>
+          <h3 className="font-bold text-neutral-800 text-base mb-1">Restate</h3>
           {[
-            "Tech blog",
-            "About",
-            "Press centre",
-            "Investor relations",
-            "Contact us",
-            "Careers",
-            "Sign in or create account",
-            "HomeViews",
-          ].map((item) => (
+            { label: "Services", view: "services" as View },
+            { label: "FAQ", view: "faq" as View },
+            { label: "Contact us", view: "contact" as View },
+          ].map(({ label, view }) => (
+            <button
+              key={label}
+              onClick={() => onNavigate?.(view)}
+              className="text-neutral-500 hover:text-cyan-600 transition-colors duration-200 hover:underline text-sm text-left cursor-pointer"
+            >
+              {label}
+            </button>
+          ))}
+          {["Tech blog", "About", "Press centre", "Investor relations", "Careers", "HomeViews"].map((item) => (
             <a
               key={item}
               href="#"

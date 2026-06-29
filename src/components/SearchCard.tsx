@@ -6,19 +6,26 @@ export function SearchCard() {
 
   const tabs: ('Buy' | 'Rent' | 'Sold')[] = ['Buy', 'Rent', 'Sold']
 
+  const placeholder = {
+    Buy: 'e.g. Hyderabad, Banjara Hills, or 500034',
+    Rent: 'e.g. Pune, Kothrud, or 411038',
+    Sold: 'e.g. Mumbai, Andheri, or 400053',
+  }
+
   return (
-    <div className="backdrop-blur-md bg-black/40 border border-white/10 shadow-2xl rounded-2xl p-6 w-full max-w-md mx-auto transition-all duration-300 hover:border-white/20">
-      <div className="flex justify-center space-x-1 bg-black/25 p-1 rounded-xl mb-6">
+    <div className="bg-[#1a2235]/95 backdrop-blur-sm rounded-2xl px-6 pt-5 pb-6 w-full shadow-2xl">
+      {/* Tabs row */}
+      <div className="flex items-center gap-1 mb-4">
         {tabs.map((tab) => {
           const isActive = activeTab === tab
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 text-center py-2 px-3 text-sm font-semibold rounded-lg transition-all duration-300 cursor-pointer ${
+              className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-white text-cyan-600 shadow'
-                  : 'text-neutral-300 hover:text-white hover:bg-white/5'
+                  ? 'bg-white/10 text-white border-b-2 border-cyan-400'
+                  : 'text-neutral-400 hover:text-white'
               }`}
             >
               {tab}
@@ -27,37 +34,35 @@ export function SearchCard() {
         })}
       </div>
 
-      <div className="space-y-4">
-        <div className="text-white text-xs font-semibold tracking-wider uppercase opacity-85 text-center">
-          search properties to {activeTab.toLowerCase()}
-        </div>
-        <div className="relative flex items-center bg-white/10 rounded-xl border border-white/10 overflow-hidden shadow-inner focus-within:border-cyan-400 focus-within:ring-1 focus-within:ring-cyan-400 transition-all duration-200">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Enter location or postcode..."
-            className="w-full bg-transparent text-white placeholder-neutral-300 text-sm px-4 py-3 focus:outline-none"
-          />
-          <button className="bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-sm px-5 py-3 rounded-r-xl transition-all duration-200 hover:shadow-lg active:scale-95 flex items-center justify-center cursor-pointer">
-            <svg
-              className="w-4 h-4 mr-1.5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            Search
-          </button>
-        </div>
+      {/* Label */}
+      <p className="text-neutral-300 text-sm font-medium mb-3">
+        Search properties to {activeTab.toLowerCase()}
+      </p>
+
+      {/* Search row */}
+      <div className="flex items-stretch gap-0 bg-white rounded-xl overflow-hidden shadow-inner">
+        {/* Search icon */}
+        <span className="flex items-center pl-4 pr-2 text-neutral-400">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </span>
+
+        {/* Input */}
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder={placeholder[activeTab]}
+          className="flex-1 py-3.5 pr-3 text-sm text-neutral-800 placeholder-neutral-400 focus:outline-none bg-transparent"
+        />
+
+        {/* Search button */}
+        <button className="bg-cyan-500 hover:bg-cyan-600 active:scale-95 text-white font-bold text-sm px-8 transition-all duration-200 cursor-pointer flex-shrink-0">
+          Search
+        </button>
       </div>
     </div>
   )
-}
+}
+
