@@ -7,7 +7,8 @@ function App() {
 
   return (
     <div className=''>
-      <SearchCard/>
+      <Home/>
+     
    </div>
   )
 }

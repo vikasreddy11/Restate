@@ -1,4 +1,5 @@
 import hyd2 from "../assets/hyd2.jpeg"
+import { SearchCard } from "../components/SearchCard"
 
 export function Home () {
     return (
@@ -14,9 +15,12 @@ export function Home () {
         </div>
         
       </div >
-      <div className='flex justify-center '>
+      <div className='relative flex justify-center '>
         <img src={hyd2}
         className='rounded-4xl m-5 h-screen'/>
+        <div className="absolute left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2 ">
+    <SearchCard />
+  </div>
       </div></div>
     )
 }
